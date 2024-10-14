@@ -1,11 +1,15 @@
 from flask import Flask, render_template, redirect, url_for
+import os
 
 app = Flask(__name__, template_folder='templates')
+
+background_color = os.environ.get('BACKGROUND_COLOR');
+
 
 @app.route('/')
 def index():
   mylist = [10, 20, 30, 40, 50]
-  return render_template('index.html', mylist=mylist)
+  return render_template('index.html', color=background_color, mylist=mylist)
 
 @app.route('/home')
 def home():
